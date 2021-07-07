@@ -48,6 +48,9 @@ function rollD6() {
   d6roll.src = "images/d6/" + clickRoll + ".png";
   const d6mean = document.querySelector("#d6-rolls-mean");
   d6mean.innerText = mean(sixes);
+  const d6median = document.querySelector("#d6-rolls-median");
+  d6median.innerText = median(sixes);
+  
 
 
 }
@@ -71,6 +74,8 @@ function rollDouble6() {
   console.log(doubleSixes);
   const dd6mean = document.querySelector("#double-d6-rolls-mean");
   dd6mean.innerText = mean(doubleSixes);
+  const dd6median = document.querySelector("#double-d6-rolls-median");
+  dd6median.innerText = median(doubleSixes);
   
 
 }
@@ -91,6 +96,8 @@ function rollD12() {
   d12roll.src = "images/numbers/" + clickRoll + ".png";
   const d12mean = document.querySelector("#d12-rolls-mean");
   d12mean.innerText = mean(twelves);
+  const d12median = document.querySelector("#d12-rolls-median");
+  d12median.innerText = median(twelves);
 
 }
 
@@ -109,6 +116,8 @@ function rollD20() {
   d20roll.src = "images/numbers/" + clickRoll + ".png";
   const d20mean = document.querySelector("#d20-rolls-mean");
   d20mean.innerText = mean(twenties);
+  const d20median = document.querySelector("#d20-rolls-median");
+  d20median.innerText = median(twenties);
 
 }
 
@@ -180,5 +189,32 @@ function mean(arr) {
   const arrSum = arr.reduce((sum, element) => sum + element);
   const avg = arrSum / arr.length
   return avg.toFixed(2);
+
+}
+
+//Mean function
+function median(arr) {
+
+  const arrSort = sortByNumber(arr)
+
+  console.log(arrSort);
+
+  const medianOdd = arrSort[Math.round((arrSort.length - 1) / 2)];
+  const medianL = arrSort[Math.round((arrSort.length - 1) / 2)];
+  const medianR = arrSort[Math.floor((arrSort.length - 1) / 2)];
+  const medianEven = (medianL + medianR) / 2;
+
+
+  if (arr.length % 2 === 0) {
+
+    output = medianEven;
+
+  } if (arr.length % 2 === 1) {
+
+    output = medianOdd;
+  
+  } 
+
+  return output;
 
 }
